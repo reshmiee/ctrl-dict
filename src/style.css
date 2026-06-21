@@ -241,6 +241,24 @@ body {
   margin-bottom: 16px;
 }
 
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #3366cc;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+  font-family: inherit;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
 .search-result-block {
   margin-bottom: 20px;
 }

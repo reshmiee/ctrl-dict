@@ -24,6 +24,19 @@ const content = document.getElementById('content')!
 
 let allData: Record<string, Term[]> = {}
 let currentCatIndex = 0
+const navHistory: (() => void)[] = []
+
+function goBack() {
+  navHistory.pop()
+  const prev = navHistory[navHistory.length - 1]
+  if (prev) prev()
+}
+
+function renderBackBtn() {
+  return navHistory.length > 1
+    ? `<button id="back-btn" class="back-btn">‹ Back</button>`
+    : ''
+}
 
 async function loadCategory(id: string): Promise<Term[]> {
   const res = await fetch(`/data/${id}.json`)
@@ -78,17 +91,20 @@ function renderTerm(term: Term): string {
   return html
 }
 
-function showCategory(index: number) {
+function showCategory(index: number, pushHistory = true) {
   currentCatIndex = index
   const cat = categories[index]
   const terms = allData[cat.id] || []
+
+  if (pushHistory) navHistory.push(() => showCategory(index, false))
 
   // highlight active category in sidebar
   document.querySelectorAll('.cat-header').forEach((el, i) => {
     el.classList.toggle('active-cat', i === index)
   })
 
-  let html = `<h1 class="cat-page-title">${cat.label} Terminologies</h1>`
+  let html = renderBackBtn()
+  html += `<h1 class="cat-page-title">${cat.label} Terminologies</h1>`
 
   const grouped = groupByLetter(terms)
   for (const letter of Object.keys(grouped).sort()) {
@@ -122,6 +138,8 @@ function showCategory(index: number) {
 
   content.innerHTML = html
   content.scrollTop = 0
+
+  content.querySelector('#back-btn')?.addEventListener('click', goBack)
 
   // attach pagination click handlers
   content.querySelectorAll('[data-index]').forEach(btn => {
@@ -237,6 +255,12 @@ async function init() {
   const dropdown = buildDropdown()
   const search = document.getElementById('search') as HTMLInputElement
 
+  document.getElementById('logo')!.style.cursor = 'pointer'
+  document.getElementById('logo')!.addEventListener('click', () => {
+    navHistory.length = 0
+    showCategory(0)
+  })
+
   search.addEventListener('input', () => {
     const q = search.value.toLowerCase().trim()
     if (!q) {
@@ -312,7 +336,9 @@ async function init() {
         }
       })
 
-      let html = `<h1 class="cat-page-title">Search: "${search.value}"</h1>`
+      navHistory.push(() => { search.value = ''; showCategory(currentCatIndex, false) })
+      let html = renderBackBtn()
+      html += `<h1 class="cat-page-title">Search: "${search.value}"</h1>`
       if (results.length === 0) {
         html += `<p style="color:#54595d;font-size:0.85rem;margin-top:12px;">No terms found.</p>`
       } else {
@@ -326,6 +352,7 @@ async function init() {
 
       content.innerHTML = html
       content.scrollTop = 0
+      content.querySelector('#back-btn')?.addEventListener('click', goBack)
       search.value = ''
     }
   })
