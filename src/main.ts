@@ -213,12 +213,122 @@ function buildSidebar() {
   sidebar.appendChild(box)
 }
 
+function buildDropdown() {
+  const search = document.getElementById('search')!
+  const wrapper = document.createElement('div')
+  wrapper.className = 'search-wrapper'
+  search.parentNode!.insertBefore(wrapper, search)
+  wrapper.appendChild(search)
+
+  const dropdown = document.createElement('div')
+  dropdown.id = 'search-dropdown'
+  dropdown.className = 'hidden'
+  wrapper.appendChild(dropdown)
+  return dropdown
+}
+
 async function init() {
   for (const cat of categories) {
     allData[cat.id] = await loadCategory(cat.id)
   }
   buildSidebar()
   showCategory(0)
+
+  const dropdown = buildDropdown()
+  const search = document.getElementById('search') as HTMLInputElement
+
+  search.addEventListener('input', () => {
+    const q = search.value.toLowerCase().trim()
+    if (!q) {
+      dropdown.classList.add('hidden')
+      dropdown.innerHTML = ''
+      return
+    }
+
+    const results: { cat: typeof categories[0]; catIndex: number; term: Term }[] = []
+    categories.forEach((cat, i) => {
+      for (const term of (allData[cat.id] || [])) {
+        if (term.term.toLowerCase().includes(q)) {
+          results.push({ cat, catIndex: i, term })
+        }
+      }
+    })
+
+    if (results.length === 0) {
+      dropdown.innerHTML = `<div class="search-no-result">No results found</div>`
+    } else {
+      dropdown.innerHTML = results.slice(0, 10).map(r => {
+        const preview = r.term.definitions[0] || ''
+        const short = preview.length > 80 ? preview.slice(0, 80) + '…' : preview
+        return `<div class="search-item" data-cat="${r.catIndex}" data-term="${r.term.term.replace(/\s+/g, '-').toLowerCase()}">
+          <div class="search-item-left">
+            <span class="search-item-term">${r.term.term}</span>
+            <span class="search-item-preview">${short}</span>
+          </div>
+          <span class="search-item-arrow">→</span>
+        </div>`
+      }).join('')
+
+      dropdown.querySelectorAll('.search-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const catIndex = parseInt((el as HTMLElement).dataset.cat!)
+          const termId = (el as HTMLElement).dataset.term!
+          search.value = ''
+          dropdown.classList.add('hidden')
+          dropdown.innerHTML = ''
+          showCategory(catIndex)
+          setTimeout(() => {
+            document.getElementById(`term-${termId}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          }, 50)
+        })
+      })
+    }
+
+    dropdown.classList.remove('hidden')
+  })
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('#navbar')) {
+      dropdown.classList.add('hidden')
+    }
+  })
+
+  search.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdown.classList.add('hidden')
+      search.value = ''
+    }
+    if (e.key === 'Enter') {
+      const q = search.value.toLowerCase().trim()
+      if (!q) return
+      dropdown.classList.add('hidden')
+
+      const results: { cat: typeof categories[0]; catIndex: number; term: Term }[] = []
+      categories.forEach((cat, i) => {
+        for (const term of (allData[cat.id] || [])) {
+          if (term.term.toLowerCase().includes(q)) {
+            results.push({ cat, catIndex: i, term })
+          }
+        }
+      })
+
+      let html = `<h1 class="cat-page-title">Search: "${search.value}"</h1>`
+      if (results.length === 0) {
+        html += `<p style="color:#54595d;font-size:0.85rem;margin-top:12px;">No terms found.</p>`
+      } else {
+        for (const r of results) {
+          html += `<div class="search-result-block">`
+          html += `<div class="search-result-cat">${r.cat.label}</div>`
+          html += renderTerm(r.term)
+          html += `</div>`
+        }
+      }
+
+      content.innerHTML = html
+      content.scrollTop = 0
+      search.value = ''
+    }
+  })
 }
 
 init()
