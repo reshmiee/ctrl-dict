@@ -1,0 +1,98 @@
+[
+  {
+    "term": "API Endpoint",
+    "letter": "A",
+    "definitions": [
+      "A specific (method + URL) on your server that does one particular thing, that the frontend calls to send or get data",
+      "Written as: HTTP Method + URL path (e.g. POST /check-url)",
+      "A 'door' on your server that receives or sends data"
+    ],
+    "note": "Frontend calls the backend, which has an API. That API branches into different endpoints — each endpoint handles one specific task (e.g. /check-url, /submit-feedback, /get-stats)."
+  },
+  {
+    "term": "Backend",
+    "letter": "B",
+    "definitions": [
+      "Everything that runs on the server — behind the scenes",
+      "Backend = API + Authentication + Background Jobs + Business Logic + Caching + Configuration + Database + Error Handling + External API Integration + File Storage + Logging + Middleware + Security + Server Logic"
+    ],
+    "types": [
+      { "name": "Data", "description": "Storing, fetching, updating, deleting data in databases" },
+      { "name": "Authentication & Authorization", "description": "Login systems, checking permissions, who can access what" },
+      { "name": "Business Logic", "description": "All the rules and calculations — pricing, discounts, algorithms, validation" },
+      { "name": "Processing/Computing", "description": "Heavy tasks like image resizing, video compression, complex calculations" },
+      { "name": "External Services", "description": "Connecting to payment processors, email services, SMS, other APIs" },
+      { "name": "Real-time Communication", "description": "Routing messages between users, live updates, notifications" },
+      { "name": "Security", "description": "Encryption, spam detection, rate limiting, protecting sensitive operations" },
+      { "name": "Background Jobs", "description": "Scheduled tasks, automated processes, cleanup operations" }
+    ]
+  },
+  {
+    "term": "Hosting",
+    "letter": "H",
+    "definitions": [
+      "Putting your project on the internet so others can access it",
+      "Renting space on someone else's server to run your code — makes your website/backend available 24/7",
+      "Before hosting: your project only works on your computer. After hosting: anyone worldwide can use it."
+    ],
+    "types": [
+      { "name": "Backend Hosting", "description": "For your Node.js server — Render, Railway" },
+      { "name": "Database Hosting", "description": "For your MySQL — PlanetScale, Railway" },
+      { "name": "Frontend Hosting", "description": "For your landing page — Vercel, Netlify" }
+    ]
+  },
+  {
+    "term": "Middleware",
+    "letter": "M",
+    "definitions": [
+      "Code that runs between the request and the response",
+      "Checks requests from the frontend for security issues like invalid data, unauthorized access, and spam attacks",
+      "Only safe requests are forwarded to the backend — malicious ones are blocked before they cause harm"
+    ],
+    "note": "Middleware is huge for cybersecurity."
+  },
+  {
+    "term": "Protocol",
+    "letter": "P",
+    "definitions": [
+      "A set of rules that define how something should be done"
+    ]
+  },
+  {
+    "term": "Route",
+    "letter": "R",
+    "definitions": [
+      "Route = endpoint + the code that handles it",
+      "When frontend calls an API endpoint, the backend code/function that handles that endpoint is called a route"
+    ],
+    "note": "Think of it like a button (endpoint) and the logic behind it (route). You press the button → the route defines what happens."
+  },
+  {
+    "term": "Server",
+    "letter": "S",
+    "definitions": [
+      "A computer/program that listens for and responds to requests — the 'thing' that's always running and waiting to serve",
+      "Backend is the code/logic that runs on the server"
+    ],
+    "types": [
+      { "name": "Examples of servers", "description": "A physical computer in a data center (AWS, Google Cloud), your laptop running Node.js during development, Render/Railway hosting service, Apache/Nginx (web server software)" },
+      { "name": "Examples of backend", "description": "Your Node.js + Express code files, API endpoints, routes and handler functions, database connection code, middleware, authentication code" }
+    ],
+    "note": "Server = computer/program (the thing running). Backend = the code on it (what it does)."
+  },
+  {
+    "term": "Software",
+    "letter": "S",
+    "definitions": [
+      "Programs and instructions that tell a computer what to do — the non-physical part of a computer"
+    ]
+  },
+  {
+    "term": "URL",
+    "letter": "U",
+    "definitions": [
+      "Uniform Resource Locator — the address/location of something on the internet"
+    ],
+    "note": "URL path: the part after the domain name that specifies which resource you want. Example: in 'example.com/check-url', the path is '/check-url'."
+  }
+]

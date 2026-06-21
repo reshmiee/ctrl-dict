@@ -1,0 +1,22 @@
+[
+  {
+    "term": "Go",
+    "letter": "G",
+    "definitions": [
+      "A programming language built at Google to solve real frustrations — slow build times, complex codebases, and difficulty writing concurrent software",
+      "Simple syntax: minimal, clean, inspired by C but without the complexity",
+      "Compiled & fast: compiles directly to machine code, fast like C/C++ but compiles much faster",
+      "Statically typed: types checked at compile time, but type inference (x := 5) keeps it less verbose",
+      "Garbage collected: memory managed automatically — no manual allocation/free like in C",
+      "Built-in concurrency: goroutines (lightweight threads) and channels (communication between them) make concurrent programming easy",
+      "Strong standard library: excellent built-in packages for HTTP servers, JSON, file I/O, testing — often no third-party libraries needed"
+    ],
+    "types": [
+      { "name": "Backend web servers & APIs", "description": "Fast, efficient servers and REST APIs" },
+      { "name": "Cloud infrastructure tools", "description": "Docker, Kubernetes, and Terraform are all written in Go" },
+      { "name": "CLI tools", "description": "Command-line tools and utilities" },
+      { "name": "Microservices", "description": "Small, independent services that work together" },
+      { "name": "Networking tools", "description": "Low-level networking and system programs" }
+    ]
+  }
+]

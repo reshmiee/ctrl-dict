@@ -1,0 +1,273 @@
+[
+  {
+    "term": "API",
+    "letter": "A",
+    "definitions": [
+      "Application Programming Interface",
+      "A way for two programs to talk to each other (exchange data/information)",
+      "The interface part of the backend that frontend talks to",
+      "Written inside backend code — it is a backend component"
+    ],
+    "note": "The 'two programs' can be any two separate pieces of software that need to communicate (e.g. your extension + your backend, your backend + OpenAI, weather app + weather service). They are separate because they have different codebases and run independently.",
+    "types": [
+      { "name": "Backend API", "description": "You build your own in your server for connecting with client/frontend, like in Node.js" },
+      { "name": "External API", "description": "Someone else's backend that you call, like OpenAI, a weather service, or a maps service" },
+      { "name": "Browser API (Frontend APIs)", "description": "Built into the browser to connect with servers, like fetch() and localStorage()" }
+    ]
+  },
+  {
+    "term": "API Call",
+    "letter": "A",
+    "definitions": [
+      "Asking another service for data"
+    ]
+  },
+  {
+    "term": "Cache",
+    "letter": "C",
+    "definitions": [
+      "Temporarily stored data to speed up future requests"
+    ]
+  },
+  {
+    "term": "Code",
+    "letter": "C",
+    "definitions": [
+      "The instructions you write that create programs",
+      "Text you write in a programming language to give instructions to the computer",
+      "Code is static (just text sitting in files) — when you run/execute it, it becomes a program"
+    ]
+  },
+  {
+    "term": "Codebase",
+    "letter": "C",
+    "definitions": [
+      "The complete collection of all source code files for a project or program",
+      "All the code files that make up your project, stored in one place"
+    ],
+    "note": "Codebase = the actual code files themselves (the content). File structure = how those files are organized (the organization)."
+  },
+  {
+    "term": "Deployment",
+    "letter": "D",
+    "definitions": [
+      "Putting your project online for others to use"
+    ]
+  },
+  {
+    "term": "Environment Variables",
+    "letter": "E",
+    "definitions": [
+      "Secret config values like API keys and passwords stored outside your code"
+    ]
+  },
+  {
+    "term": "File Structure",
+    "letter": "F",
+    "definitions": [
+      "How the code files are organized into folders and subfolders"
+    ]
+  },
+  {
+    "term": "Framework",
+    "letter": "F",
+    "definitions": [
+      "A complete skeleton/structure for building applications that enforces specific patterns and controls the overall flow of your program",
+      "The framework calls YOUR code, not the other way around (inversion of control)",
+      "Opinionated — has strong rules about how you should organize and write code",
+      "Provides the entire foundation, not just individual tools"
+    ],
+    "types": [
+      { "name": "Node.js", "description": "Express.js (web server), Next.js (full-stack React apps), NestJS (enterprise applications)" },
+      { "name": "Python", "description": "Django (full-stack web framework), Flask (lightweight web framework), FastAPI (modern API framework)" },
+      { "name": "Frontend", "description": "React (UI framework), Vue (UI framework), Angular (UI framework)" }
+    ]
+  },
+  {
+    "term": "Fullstack",
+    "letter": "F",
+    "definitions": [
+      "Frontend + Backend combined"
+    ]
+  },
+  {
+    "term": "HTTP",
+    "letter": "H",
+    "definitions": [
+      "HyperText Transfer Protocol — the rules/language browsers and servers use to talk to each other",
+      "The protocol used between client and server"
+    ],
+    "types": [
+      { "name": "GET", "description": "Retrieve/read data — asking the server to send you information" },
+      { "name": "POST", "description": "Create/send new data — sending data to server to create something new" },
+      { "name": "PUT", "description": "Update/replace entire resource — replacing all data of something with new data" },
+      { "name": "PATCH", "description": "Partially update resource — updating just part of the data" },
+      { "name": "DELETE", "description": "Remove resource — delete data from server" },
+      { "name": "HEAD", "description": "Same as GET but only retrieves headers (no body) — used to check if a resource exists without downloading it" },
+      { "name": "OPTIONS", "description": "Ask server what methods are allowed — checks CORS (Cross Origin Resource Sharing)" },
+      { "name": "CONNECT", "description": "Establish a tunnel (for proxies) — used for very specific networking scenarios" },
+      { "name": "TRACE", "description": "Echo back the request (for debugging) — rarely used, mostly for troubleshooting" }
+    ],
+    "note": "GET, POST, PUT, PATCH, DELETE are the five most important ones."
+  },
+  {
+    "term": "JSON",
+    "letter": "J",
+    "definitions": [
+      "JavaScript Object Notation — a format for organizing and sending data (looks like JavaScript objects)",
+      "A universal language that both frontend and backend understand"
+    ]
+  },
+  {
+    "term": "Library",
+    "letter": "L",
+    "definitions": [
+      "A collection of pre-written modules that solve common problems — someone else already wrote the code, tested it, and packaged it for you to use",
+      "You are in control — you decide when and how to use it",
+      "Passive — it sits there waiting for you to call it",
+      "Modular — you can use just the parts you need"
+    ],
+    "types": [
+      { "name": "Node.js", "description": "axios (HTTP requests), mysql2 (database connections), moment (date manipulation), bcrypt (password hashing)" },
+      { "name": "Python", "description": "requests (HTTP requests), pandas (data analysis), numpy (numerical computing), matplotlib (plotting/graphs), beautifulsoup (web scraping)" }
+    ]
+  },
+  {
+    "term": "Localhost",
+    "letter": "L",
+    "definitions": [
+      "Your own computer acting as a server"
+    ]
+  },
+  {
+    "term": "Module",
+    "letter": "M",
+    "definitions": [
+      "A single, focused piece of code that does ONE specific thing — the smallest building block",
+      "Single responsibility: does one job only",
+      "Self-contained: all the code for that one job is in one place",
+      "Reusable: you can use it anywhere in your project",
+      "Importable: you bring it into other files when needed"
+    ],
+    "types": [
+      { "name": "Node.js built-in", "description": "fs (file operations), path (file paths), os (operating system info), crypto (encryption)" },
+      { "name": "Python built-in", "description": "math (mathematical functions), random (random numbers), datetime (date/time handling), json (JSON parsing)" },
+      { "name": "Your own", "description": "helpers.js / utils.py — your utility functions" }
+    ]
+  },
+  {
+    "term": "Package",
+    "letter": "P",
+    "definitions": [
+      "A bundle of code (modules/libraries/frameworks) that's been packaged up and published for others to download and use",
+      "Code you write → package it up → publish to npm → others can install it"
+    ],
+    "note": "npm (Node Package Manager) is like an app store for JavaScript code. Package managers by language: JavaScript/Node.js uses npm, yarn, or pnpm. Python uses pip or conda."
+  },
+  {
+    "term": "Port",
+    "letter": "P",
+    "definitions": [
+      "A door number the server listens on (like 3000, 5000)"
+    ]
+  },
+  {
+    "term": "Program",
+    "letter": "P",
+    "definitions": [
+      "A set of instructions that tell the computer what to do",
+      "Running/executing a program: the process of the computer following the instructions step-by-step"
+    ],
+    "types": [
+      { "name": "Applications (Apps)", "description": "Programs you use directly — browser, Instagram, browser extension" },
+      { "name": "System Software", "description": "Programs that run the computer itself — Windows, macOS, Linux" },
+      { "name": "Scripts/Code", "description": "Small programs that do specific tasks — a JavaScript file that checks URLs, a Python script that analyzes data" }
+    ]
+  },
+  {
+    "term": "Request",
+    "letter": "R",
+    "definitions": [
+      "What the client (frontend) sends to the server (backend) asking for something"
+    ],
+    "parts": [
+      { "name": "Method", "description": "GET, POST, etc." },
+      { "name": "URL", "description": "Where to send it" },
+      { "name": "Headers", "description": "Extra info (like 'I'm sending JSON')" },
+      { "name": "Body", "description": "Data being sent (for POST/PUT)" }
+    ],
+    "example": "POST /check-url\nHeaders: { Content-Type: application/json }\nBody: { \"url\": \"example.com\" }"
+  },
+  {
+    "term": "Response",
+    "letter": "R",
+    "definitions": [
+      "What the server sends back to the client after processing the request"
+    ],
+    "parts": [
+      { "name": "Status Code", "description": "Did it work? (200 = success, 404 = not found, 500 = error)" },
+      { "name": "Headers", "description": "Extra info" },
+      { "name": "Body", "description": "The actual data" }
+    ],
+    "example": "Status: 200 OK\nBody: { \"safe\": true, \"reason\": \"No threats detected\" }"
+  },
+  {
+    "term": "Runtime Environment",
+    "letter": "R",
+    "definitions": [
+      "The complete ecosystem needed to run your code — includes interpreter/compiler + libraries + APIs + memory management + everything else"
+    ],
+    "parts": [
+      { "name": "Interpreter or Compiler", "description": "The translator" },
+      { "name": "Libraries", "description": "Pre-written code" },
+      { "name": "APIs", "description": "System interaction" },
+      { "name": "Memory Management", "description": "Handles memory allocation and garbage collection" }
+    ],
+    "types": [
+      { "name": "Node.js", "description": "V8 engine + Node APIs + event loop" },
+      { "name": "Python Runtime", "description": "Python interpreter + standard library" },
+      { "name": "JVM", "description": "Java Virtual Machine — includes Java compiler + runtime libraries" }
+    ]
+  },
+  {
+    "term": "Software",
+    "letter": "S",
+    "definitions": [
+      "Programs and instructions that tell a computer what to do — the non-physical part of a computer"
+    ],
+    "note": "Software is a general term for all programs. A program is a specific piece of software. An application (app) is software you use directly. Software is a group of multiple programs, though a single program can be called software too."
+  },
+  {
+    "term": "Tech Stack",
+    "letter": "T",
+    "definitions": [
+      "The combination of technologies and tools you use to build a project"
+    ]
+  },
+  {
+    "term": "Tools",
+    "letter": "T",
+    "definitions": [
+      "Software used during development to write, run, test, and manage code"
+    ],
+    "types": [
+      { "name": "Node.js", "description": "JavaScript runtime — lets you run JavaScript outside the browser" },
+      { "name": "npm", "description": "Package manager — installs libraries/tools (comes with Node.js)" },
+      { "name": "VS Code", "description": "Code editor" },
+      { "name": "Git", "description": "Version control — saves your code history, enables teamwork" },
+      { "name": "GitHub", "description": "Code hosting — store code online, share with team" },
+      { "name": "Postman", "description": "API tester — test your backend without building frontend yet" },
+      { "name": "MySQL Workbench", "description": "Database viewer — see your database visually" },
+      { "name": "Chrome DevTools", "description": "Browser debugger — see errors, test code in browser" },
+      { "name": "Terminal/Command Prompt", "description": "Command line — run commands to start servers, install things" }
+    ]
+  },
+  {
+    "term": "URL",
+    "letter": "U",
+    "definitions": [
+      "Uniform Resource Locator — the address/location of something on the internet"
+    ],
+    "note": "URL path: the part of the URL that comes AFTER the domain name, specifying which specific resource/page you want. Example: in 'example.com/check-url', the path is '/check-url'."
+  }
+]
