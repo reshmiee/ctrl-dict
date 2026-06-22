@@ -3,20 +3,22 @@
     "term": "Go",
     "letter": "G",
     "definitions": [
-      "A programming language built at Google to solve real frustrations — slow build times, complex codebases, and difficulty writing concurrent software",
-      "Simple syntax: minimal, clean, inspired by C but without the complexity",
-      "Compiled & fast: compiles directly to machine code, fast like C/C++ but compiles much faster",
-      "Statically typed: types checked at compile time, but type inference (x := 5) keeps it less verbose",
-      "Garbage collected: memory managed automatically — no manual allocation/free like in C",
-      "Built-in concurrency: goroutines (lightweight threads) and channels (communication between them) make concurrent programming easy",
-      "Strong standard library: excellent built-in packages for HTTP servers, JSON, file I/O, testing — often no third-party libraries needed"
+      "go was built to solve real frustrations at google… slow build times, complex codebases, and difficulty writing concurrent software",
+      "the goal was a language that's simple to write, fast to compile, and efficient to run",
+      "simple syntax: go has a minimal, clean syntax inspired by C but without much of the complexity; there are very few keywords, and the language deliberately omits features like inheritance and operator overloading",
+      "compiled & fast: go compiles directly to machine code, making programs fast like C/C++, but compiles much faster than those languages",
+      "statically typed: types are checked at compile time, catching errors early but Go's type inference (x := 5) makes it feel less verbose than Java",
+      "garbage collected: memory is managed automatically, so you don't manually allocate/free memory like in C",
+      "built-in concurrency: this is go's standout feature. it has goroutines (lightweight threads) and channels (for communication between them), making concurrent programming much easier than in most languages",
+      "strong standard library: go ships with excellent built-in packages for HTTP servers, JSON, file I/O, testing, and more often without needing third-party libraries"
     ],
+    "note": "what go is used for:",
     "types": [
-      { "name": "Backend web servers & APIs", "description": "Fast, efficient servers and REST APIs" },
-      { "name": "Cloud infrastructure tools", "description": "Docker, Kubernetes, and Terraform are all written in Go" },
-      { "name": "CLI tools", "description": "Command-line tools and utilities" },
-      { "name": "Microservices", "description": "Small, independent services that work together" },
-      { "name": "Networking tools", "description": "Low-level networking and system programs" }
+      { "name": "backend web servers & APIs", "description": "fast, efficient servers and REST APIs" },
+      { "name": "cloud infrastructure tools", "description": "docker, kubernetes, and terraform are all written in Go" },
+      { "name": "CLI tools", "description": "command-line tools and utilities" },
+      { "name": "microservices", "description": "small, independent services that work together" },
+      { "name": "networking tools", "description": "low-level networking and system programs" }
     ]
   }
 ]

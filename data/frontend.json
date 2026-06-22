@@ -3,41 +3,41 @@
     "term": "Async",
     "letter": "A",
     "definitions": [
-      "Code that doesn't wait — runs in the background while other code continues"
+      "code that doesn't wait, runs in background"
     ]
   },
   {
-    "term": "Client",
+    "term": "Client vs Frontend",
     "letter": "C",
     "definitions": [
-      "The device/program that makes requests to a server — the 'thing' that's asking for services",
-      "Frontend is the code/interface that runs on the client that the user sees and interacts with"
+      "client is the device/program that makes requests to a server, basically, the 'thing' that's asking for services",
+      "frontend is the code/interface that runs on the client that the user sees and interacts with"
     ],
     "types": [
-      { "name": "Examples of clients", "description": "Your browser (Chrome, Firefox), your extension (the program running in browser), a mobile app, or even another server" },
-      { "name": "Examples of frontend", "description": "HTML/CSS/JS files, UI/design, buttons, forms, visuals" }
+      { "name": "examples of clients", "description": "your browser (chrome, firefox), your extension (the program running in browser), a mobile app, even another server can be a client" },
+      { "name": "examples of frontend", "description": "html/css/js files, ui/design, buttons, forms, visuals" }
     ],
-    "note": "Client = hardware/program (the thing making requests). Frontend = the code running on it (what the user sees)."
+    "note": "client = hardware/program (the thing making requests). frontend = the code running on it (what the user sees). server (computer/program) → backend (code on server). client (browser/device) → frontend (code in browser)"
   },
   {
     "term": "DOM",
     "letter": "D",
     "definitions": [
-      "Document Object Model — the webpage structure that JavaScript can read and manipulate"
+      "document object model (the webpage structure)"
     ]
   },
   {
     "term": "Event Listener",
     "letter": "E",
     "definitions": [
-      "Code that waits for a specific action (like a click or typing) and runs a function when it happens"
+      "code that waits for clicks/typing"
     ]
   },
   {
     "term": "Fetch",
     "letter": "F",
     "definitions": [
-      "A browser API used to get data from the internet (make HTTP requests from JavaScript)"
+      "getting data from internet"
     ]
   }
 ]

@@ -3,35 +3,35 @@
     "term": "Background Script",
     "letter": "B",
     "definitions": [
-      "Runs in the background — handles events and logic that doesn't need the webpage to be open"
+      "runs in background"
     ]
   },
   {
     "term": "Content Script",
     "letter": "C",
     "definitions": [
-      "Runs on webpages — can read and modify the DOM of any page the extension has access to"
+      "runs on webpages"
     ]
   },
   {
     "term": "Manifest",
     "letter": "M",
     "definitions": [
-      "The config file for a browser extension — defines its name, permissions, scripts, and everything the browser needs to know about it"
+      "config file for extension"
     ]
   },
   {
     "term": "Permissions",
     "letter": "P",
     "definitions": [
-      "What the extension is allowed to access — declared in the manifest"
+      "what extension can access"
     ]
   },
   {
     "term": "Popup",
     "letter": "P",
     "definitions": [
-      "The small window that appears when you click the extension icon in the browser toolbar"
+      "window when you click icon"
     ]
   }
 ]

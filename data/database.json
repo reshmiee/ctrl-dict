@@ -3,50 +3,50 @@
     "term": "Column",
     "letter": "C",
     "definitions": [
-      "One field in a table — like 'name' or 'email'"
+      "one field (like 'name' or 'email')"
     ]
   },
   {
     "term": "Database",
     "letter": "D",
     "definitions": [
-      "A separate system that stores and manages data — accessed through backend code",
-      "Not the backend itself — it is managed by the backend. Together, they form the backend system."
+      "database is not the backend itself. database is managed by the backend and together, they form the backend system",
+      "it is a separate system that is part of the backend architecture and is accessed through backend code."
     ]
   },
   {
     "term": "Primary Key",
     "letter": "P",
     "definitions": [
-      "A unique ID for each row in a table — no two rows can have the same primary key"
+      "unique ID for each row"
     ]
   },
   {
     "term": "Query",
     "letter": "Q",
     "definitions": [
-      "A question you ask the database — used to read, write, update, or delete data"
+      "question you ask the database"
     ]
   },
   {
     "term": "Row",
     "letter": "R",
     "definitions": [
-      "One entry/record in a table"
+      "one entry in table"
     ]
   },
   {
     "term": "Schema",
     "letter": "S",
     "definitions": [
-      "The structure of your tables — defines what columns exist and what type of data each holds"
+      "structure of your tables"
     ]
   },
   {
     "term": "Table",
     "letter": "T",
     "definitions": [
-      "A collection of similar data — like a spreadsheet with rows and columns"
+      "collection of similar data (like a spreadsheet)"
     ]
   }
 ]
