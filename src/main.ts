@@ -127,7 +127,7 @@ function showCategory(index: number, pushHistory = true) {
     html += `<button class="page-btn" data-index="${index - 1}">← ${prev.label}</button>`
   }
 
-  categories.forEach((c, i) => {
+  categories.forEach((_c, i) => {
     html += `<button class="page-num ${i === index ? 'active-page' : ''}" data-index="${i}">${i + 1}</button>`
   })
 

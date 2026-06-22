@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ctrl+Dict — Admin</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f6f8fa;
+      color: #24292f;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* TOKEN GATE */
+    #token-gate {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .token-card {
+      background: #fff;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .token-card h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .token-card p {
+      font-size: 0.82rem;
+      color: #57606a;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .token-card input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: monospace;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .token-card input:focus {
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9,105,218,0.1);
+    }
+
+    .token-error {
+      font-size: 0.8rem;
+      color: #cf222e;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    /* MAIN APP */
+    #app { display: none; }
+
+    .topbar {
+      background: #24292f;
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar h1 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .topbar-badge {
+      font-size: 0.7rem;
+      background: #388bfd26;
+      color: #79c0ff;
+      border: 1px solid #388bfd;
+      border-radius: 20px;
+      padding: 2px 8px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3fb950;
+    }
+
+    .status-text {
+      font-size: 0.78rem;
+      color: #8b949e;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: calc(100vh - 49px);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: #fff;
+      border-right: 1px solid #d0d7de;
+      padding: 16px 0;
+    }
+
+    .sidebar-section {
+      padding: 0 12px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #57606a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 4px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 10px;
+      border: none;
+      background: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #24292f;
+      text-align: left;
+      transition: background 0.1s;
+    }
+
+    .sidebar-btn:hover { background: #f6f8fa; }
+    .sidebar-btn.active { background: #ddf4ff; color: #0969da; font-weight: 500; }
+
+    .sidebar-btn .icon {
+      font-size: 0.9rem;
+      width: 16px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .cat-divider {
+      height: 1px;
+      background: #d0d7de;
+      margin: 8px 12px;
+    }
+
+    /* MAIN PANEL */
+    .main {
+      padding: 24px;
+      max-width: 780px;
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .panel-sub {
+      font-size: 0.82rem;
+      color: #57606a;
+      margin-bottom: 24px;
+    }
+
+    /* FORM */
+    .form-row {
+      margin-bottom: 16px;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #24292f;
+    }
+
+    .form-row .hint {
+      font-size: 0.75rem;
+      color: #57606a;
+      font-weight: normal;
+      margin-left: 6px;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      outline: none;
+      background: #fff;
+      color: #24292f;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9,105,218,0.1);
+    }
+
+    .form-row textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 12px;
+    }
+
+    /* DYNAMIC LISTS */
+    .dynamic-list { margin-bottom: 8px; }
+
+    .dynamic-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+
+    .dynamic-item input,
+    .dynamic-item textarea {
+      flex: 1;
+      padding: 7px 10px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .dynamic-item input:focus,
+    .dynamic-item textarea:focus {
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9,105,218,0.1);
+    }
+
+    .dynamic-item textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .remove-btn {
+      padding: 6px 10px;
+      background: none;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #cf222e;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .remove-btn:hover { background: #fff1f0; border-color: #cf222e; }
+
+    .type-pair {
+      display: grid;
+      grid-template-columns: 1fr 2fr auto;
+      gap: 6px;
+      margin-bottom: 6px;
+      align-items: start;
+    }
+
+    .add-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      background: none;
+      border: 1px dashed #d0d7de;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: #57606a;
+      margin-top: 2px;
+    }
+
+    .add-btn:hover { border-color: #0969da; color: #0969da; background: #f0f6ff; }
+
+    /* SECTION DIVIDER */
+    .form-section {
+      border-top: 1px solid #d0d7de;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .form-section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #57606a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    /* OPTIONAL TOGGLE */
+    .optional-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: #57606a;
+      cursor: pointer;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    .optional-toggle input { width: auto; margin: 0; cursor: pointer; }
+
+    .optional-section { display: none; }
+    .optional-section.visible { display: block; }
+
+    /* BUTTONS */
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+      transition: background 0.1s, opacity 0.1s;
+    }
+
+    .btn-primary {
+      background: #1f883d;
+      color: #fff;
+      border-color: #1f7a37;
+    }
+
+    .btn-primary:hover { background: #1a7534; }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-secondary {
+      background: #f6f8fa;
+      color: #24292f;
+      border-color: #d0d7de;
+    }
+
+    .btn-secondary:hover { background: #eef1f4; }
+
+    .btn-danger {
+      background: #fff;
+      color: #cf222e;
+      border-color: #d0d7de;
+    }
+
+    .btn-danger:hover { background: #fff1f0; border-color: #cf222e; }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #d0d7de;
+    }
+
+    /* TOAST */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 999;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    #toast.success { background: #1f883d; color: #fff; }
+    #toast.error { background: #cf222e; color: #fff; }
+    #toast.info { background: #0969da; color: #fff; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* TERM LIST (edit panel) */
+    .term-list { margin-top: 12px; }
+
+    .term-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.1s;
+    }
+
+    .term-list-item:hover { border-color: #0969da; background: #f0f6ff; }
+
+    .term-list-item-name {
+      font-weight: 500;
+      font-size: 0.88rem;
+    }
+
+    .term-list-item-letter {
+      font-size: 0.75rem;
+      color: #57606a;
+      background: #f6f8fa;
+      border: 1px solid #d0d7de;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .term-list-search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d0d7de;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    .term-list-search:focus {
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9,105,218,0.1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px;
+      color: #57606a;
+      font-size: 0.85rem;
+    }
+
+    /* LOADING */
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      color: #0969da;
+      cursor: pointer;
+      margin-bottom: 16px;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .delete-confirm {
+      background: #fff8c5;
+      border: 1px solid #d4a72c;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .delete-confirm.visible { display: block; }
+    .delete-confirm strong { color: #cf222e; }
+  </style>
+</head>
+<body>
+
+<!-- TOKEN GATE -->
+<div id="token-gate">
+  <div class="token-card">
+    <h1>Ctrl+Dict Admin</h1>
+    <p>Enter your GitHub personal access token to continue. It stays in memory only — never saved anywhere.</p>
+    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+    <div class="token-error" id="token-error">Invalid token or no access to reshmiee/ctrl-dict</div>
+    <button class="btn btn-primary" id="token-submit" style="width:100%">Enter Admin Panel</button>
+    <p style="margin-top:14px; font-size:0.75rem; color:#57606a;">
+      Need a token? Go to GitHub → Settings → Developer settings → Personal access tokens → Generate new token (classic) → check <strong>repo</strong> scope.
+    </p>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Ctrl+Dict Admin</h1>
+      <span class="topbar-badge">reshmiee/ctrl-dict</span>
+    </div>
+    <div class="topbar-right">
+      <div class="status-dot"></div>
+      <span class="status-text" id="status-text">connected</span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Actions</div>
+        <button class="sidebar-btn active" data-panel="add" onclick="switchPanel('add', this)">
+          <span class="icon">＋</span> Add new term
+        </button>
+        <button class="sidebar-btn" data-panel="edit" onclick="switchPanel('edit', this)">
+          <span class="icon">✎</span> Edit / Delete term
+        </button>
+      </div>
+
+      <div class="cat-divider"></div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Categories</div>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('general'), 100)">
+          <span class="icon">📁</span> General
+        </button>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('frontend'), 100)">
+          <span class="icon">📁</span> Frontend
+        </button>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('backend'), 100)">
+          <span class="icon">📁</span> Backend
+        </button>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('database'), 100)">
+          <span class="icon">📁</span> Database
+        </button>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('extensions'), 100)">
+          <span class="icon">📁</span> Extensions
+        </button>
+        <button class="sidebar-btn" onclick="switchPanel('edit', document.querySelector('[data-panel=edit]')); setTimeout(() => filterByCategory('languages'), 100)">
+          <span class="icon">📁</span> Languages
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="main">
+
+      <!-- ADD PANEL -->
+      <div class="panel active" id="panel-add">
+        <div class="panel-title">Add new term</div>
+        <div class="panel-sub">Fill in the details below and hit Save to commit directly to the repo.</div>
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label>Term name</label>
+            <input type="text" id="add-term" placeholder="e.g. API Gateway" />
+          </div>
+          <div class="form-row">
+            <label>Letter</label>
+            <select id="add-letter">
+              <option value="">—</option>
+              <option>A</option><option>B</option><option>C</option><option>D</option>
+              <option>E</option><option>F</option><option>G</option><option>H</option>
+              <option>I</option><option>J</option><option>K</option><option>L</option>
+              <option>M</option><option>N</option><option>O</option><option>P</option>
+              <option>Q</option><option>R</option><option>S</option><option>T</option>
+              <option>U</option><option>V</option><option>W</option><option>X</option>
+              <option>Y</option><option>Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>Category</label>
+          <select id="add-category">
+            <option value="general">General</option>
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+            <option value="database">Database</option>
+            <option value="extensions">Extensions</option>
+            <option value="languages">Languages</option>
+          </select>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Definitions <span style="font-weight:normal;text-transform:none;letter-spacing:0">— the &gt; lines</span></div>
+          <div class="dynamic-list" id="add-defs-list">
+            <div class="dynamic-item">
+              <input type="text" placeholder="definition line..." />
+              <button class="remove-btn" onclick="removeItem(this)">✕</button>
+            </div>
+          </div>
+          <button class="add-btn" onclick="addDefLine('add-defs-list')">＋ add line</button>
+        </div>
+
+        <div class="form-section">
+          <label class="optional-toggle">
+            <input type="checkbox" onchange="toggleOptional('add-note-section', this)" /> Include a note
+          </label>
+          <div class="optional-section" id="add-note-section">
+            <div class="form-row">
+              <label>Note</label>
+              <textarea id="add-note" placeholder="note: ..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="optional-toggle">
+            <input type="checkbox" onchange="toggleOptional('add-types-section', this)" /> Include types
+          </label>
+          <div class="optional-section" id="add-types-section">
+            <div class="form-section-title">Types</div>
+            <div class="dynamic-list" id="add-types-list"></div>
+            <button class="add-btn" onclick="addTypePair('add-types-list')">＋ add type</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="optional-toggle">
+            <input type="checkbox" onchange="toggleOptional('add-parts-section', this)" /> Include parts
+          </label>
+          <div class="optional-section" id="add-parts-section">
+            <div class="form-section-title">Parts</div>
+            <div class="dynamic-list" id="add-parts-list"></div>
+            <button class="add-btn" onclick="addTypePair('add-parts-list')">＋ add part</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="optional-toggle">
+            <input type="checkbox" onchange="toggleOptional('add-example-section', this)" /> Include example
+          </label>
+          <div class="optional-section" id="add-example-section">
+            <div class="form-row">
+              <label>Example <span class="hint">code block</span></label>
+              <textarea id="add-example" placeholder="POST /check-url&#10;Headers: { Content-Type: application/json }" style="font-family:monospace;font-size:0.82rem;"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="add-save-btn" onclick="saveTerm()">Save term</button>
+          <button class="btn btn-secondary" onclick="resetAddForm()">Clear</button>
+        </div>
+      </div>
+
+      <!-- EDIT PANEL -->
+      <div class="panel" id="panel-edit">
+        <!-- LIST VIEW -->
+        <div id="edit-list-view">
+          <div class="panel-title">Edit or delete a term</div>
+          <div class="panel-sub">Click any term to edit it.</div>
+          <div class="form-row" style="margin-bottom:8px">
+            <select id="edit-cat-filter" onchange="renderTermList()">
+              <option value="">All categories</option>
+              <option value="general">General</option>
+              <option value="frontend">Frontend</option>
+              <option value="backend">Backend</option>
+              <option value="database">Database</option>
+              <option value="extensions">Extensions</option>
+              <option value="languages">Languages</option>
+            </select>
+          </div>
+          <input type="text" class="term-list-search" id="term-search" placeholder="Search terms..." oninput="renderTermList()" />
+          <div class="term-list" id="term-list"></div>
+        </div>
+
+        <!-- EDIT FORM VIEW -->
+        <div id="edit-form-view" style="display:none">
+          <button class="back-link" onclick="showListView()">← back to list</button>
+
+          <div class="panel-title" id="edit-form-title">Editing term</div>
+          <div class="panel-sub" id="edit-form-sub"></div>
+
+          <input type="hidden" id="edit-cat" />
+          <input type="hidden" id="edit-original-term" />
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Term name</label>
+              <input type="text" id="edit-term" />
+            </div>
+            <div class="form-row">
+              <label>Letter</label>
+              <select id="edit-letter">
+                <option value="">—</option>
+                <option>A</option><option>B</option><option>C</option><option>D</option>
+                <option>E</option><option>F</option><option>G</option><option>H</option>
+                <option>I</option><option>J</option><option>K</option><option>L</option>
+                <option>M</option><option>N</option><option>O</option><option>P</option>
+                <option>Q</option><option>R</option><option>S</option><option>T</option>
+                <option>U</option><option>V</option><option>W</option><option>X</option>
+                <option>Y</option><option>Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Definitions</div>
+            <div class="dynamic-list" id="edit-defs-list"></div>
+            <button class="add-btn" onclick="addDefLine('edit-defs-list')">＋ add line</button>
+          </div>
+
+          <div class="form-section">
+            <div class="form-row">
+              <label>Note <span class="hint">optional</span></label>
+              <textarea id="edit-note" placeholder="leave empty if none"></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Types <span style="font-weight:normal;text-transform:none;letter-spacing:0;font-size:0.75rem;color:#57606a">— optional</span></div>
+            <div class="dynamic-list" id="edit-types-list"></div>
+            <button class="add-btn" onclick="addTypePair('edit-types-list')">＋ add type</button>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Parts <span style="font-weight:normal;text-transform:none;letter-spacing:0;font-size:0.75rem;color:#57606a">— optional</span></div>
+            <div class="dynamic-list" id="edit-parts-list"></div>
+            <button class="add-btn" onclick="addTypePair('edit-parts-list')">＋ add part</button>
+          </div>
+
+          <div class="form-section">
+            <div class="form-row">
+              <label>Example <span class="hint">optional — code block</span></label>
+              <textarea id="edit-example" placeholder="leave empty if none" style="font-family:monospace;font-size:0.82rem;"></textarea>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" id="edit-save-btn" onclick="updateTerm()">Save changes</button>
+            <button class="btn btn-secondary" onclick="showListView()">Cancel</button>
+            <button class="btn btn-danger" onclick="showDeleteConfirm()" style="margin-left:auto">Delete term</button>
+          </div>
+
+          <div class="delete-confirm" id="delete-confirm">
+            <strong>Are you sure?</strong> This will permanently delete this term from the repo.
+            <div style="margin-top:10px; display:flex; gap:8px;">
+              <button class="btn btn-danger" onclick="deleteTerm()">Yes, delete it</button>
+              <button class="btn btn-secondary" onclick="hideDeleteConfirm()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  const REPO = 'reshmiee/ctrl-dict'
+  const BRANCH = 'main'
+  const CATEGORIES = ['general', 'frontend', 'backend', 'database', 'extensions', 'languages']
+
+  let TOKEN = ''
+  let allData = {}
+  let fileSHAs = {}
+
+  // ─── TOKEN GATE ───────────────────────────────────────────────
+  document.getElementById('token-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('token-submit').click()
+  })
+
+  document.getElementById('token-submit').addEventListener('click', async () => {
+    const input = document.getElementById('token-input')
+    const btn = document.getElementById('token-submit')
+    const err = document.getElementById('token-error')
+    TOKEN = input.value.trim()
+    if (!TOKEN) return
+
+    btn.disabled = true
+    btn.innerHTML = '<span class="spinner"></span>Verifying...'
+    err.style.display = 'none'
+
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}`, {
+        headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+      })
+      if (!res.ok) throw new Error('bad token')
+
+      await loadAllData()
+      document.getElementById('token-gate').style.display = 'none'
+      document.getElementById('app').style.display = 'block'
+      renderTermList()
+    } catch {
+      err.style.display = 'block'
+      btn.disabled = false
+      btn.textContent = 'Enter Admin Panel'
+      TOKEN = ''
+    }
+  })
+
+  // ─── GITHUB API ───────────────────────────────────────────────
+  async function ghGet(path) {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
+      headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+    })
+    if (!res.ok) throw new Error(`GET ${path} failed`)
+    return res.json()
+  }
+
+  async function ghPut(path, content, sha, message) {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${TOKEN}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message, content: btoa(unescape(encodeURIComponent(content))), sha, branch: BRANCH })
+    })
+    if (!res.ok) throw new Error(`PUT ${path} failed`)
+    return res.json()
+  }
+
+  async function loadAllData() {
+    for (const cat of CATEGORIES) {
+      const file = await ghGet(`data/${cat}.json`)
+      fileSHAs[cat] = file.sha
+      allData[cat] = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g, '')))))
+    }
+  }
+
+  async function saveCategory(cat) {
+    const content = JSON.stringify(allData[cat], null, 2)
+    const result = await ghPut(`data/${cat}.json`, content, fileSHAs[cat], `admin: update ${cat}.json`)
+    fileSHAs[cat] = result.content.sha
+  }
+
+  // ─── PANEL SWITCHING ─────────────────────────────────────────
+  function switchPanel(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'))
+    document.querySelectorAll('.sidebar-btn[data-panel]').forEach(b => b.classList.remove('active'))
+    document.getElementById(`panel-${id}`).classList.add('active')
+    if (btn) btn.classList.add('active')
+    if (id === 'edit') renderTermList()
+  }
+
+  // ─── DYNAMIC FORM HELPERS ─────────────────────────────────────
+  function addDefLine(listId, value = '') {
+    const list = document.getElementById(listId)
+    const item = document.createElement('div')
+    item.className = 'dynamic-item'
+    item.innerHTML = `<input type="text" placeholder="definition line..." value="${escapeAttr(value)}" /><button class="remove-btn" onclick="removeItem(this)">✕</button>`
+    list.appendChild(item)
+  }
+
+  function addTypePair(listId, name = '', desc = '') {
+    const list = document.getElementById(listId)
+    const item = document.createElement('div')
+    item.className = 'type-pair'
+    item.innerHTML = `
+      <input type="text" placeholder="name" value="${escapeAttr(name)}" />
+      <textarea placeholder="description">${escapeHtml(desc)}</textarea>
+      <button class="remove-btn" onclick="removeItem(this)">✕</button>`
+    list.appendChild(item)
+  }
+
+  function removeItem(btn) {
+    btn.parentElement.remove()
+  }
+
+  function toggleOptional(sectionId, checkbox) {
+    document.getElementById(sectionId).classList.toggle('visible', checkbox.checked)
+  }
+
+  function escapeAttr(s) { return s.replace(/"/g, '&quot;') }
+  function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+  function getDefLines(listId) {
+    return Array.from(document.querySelectorAll(`#${listId} .dynamic-item input`))
+      .map(i => i.value.trim()).filter(Boolean)
+  }
+
+  function getTypePairs(listId) {
+    return Array.from(document.querySelectorAll(`#${listId} .type-pair`)).map(row => ({
+      name: row.querySelector('input').value.trim(),
+      description: row.querySelector('textarea').value.trim()
+    })).filter(t => t.name)
+  }
+
+  // ─── ADD TERM ─────────────────────────────────────────────────
+  function resetAddForm() {
+    document.getElementById('add-term').value = ''
+    document.getElementById('add-letter').value = ''
+    document.getElementById('add-category').value = 'general'
+    document.getElementById('add-defs-list').innerHTML = ''
+    addDefLine('add-defs-list')
+    document.getElementById('add-note').value = ''
+    document.getElementById('add-types-list').innerHTML = ''
+    document.getElementById('add-parts-list').innerHTML = ''
+    document.getElementById('add-example').value = ''
+    document.querySelectorAll('#panel-add .optional-toggle input').forEach(cb => {
+      cb.checked = false
+      cb.dispatchEvent(new Event('change'))
+    })
+  }
+
+  async function saveTerm() {
+    const term = document.getElementById('add-term').value.trim()
+    const letter = document.getElementById('add-letter').value
+    const cat = document.getElementById('add-category').value
+    const defs = getDefLines('add-defs-list')
+    const note = document.getElementById('add-note').value.trim()
+    const types = getTypePairs('add-types-list')
+    const parts = getTypePairs('add-parts-list')
+    const example = document.getElementById('add-example').value.trim()
+
+    if (!term || !letter || !cat) { showToast('Fill in term name, letter, and category', 'error'); return }
+
+    const obj = { term, letter, definitions: defs }
+    if (note) obj.note = note
+    if (types.length) obj.types = types
+    if (parts.length) obj.parts = parts
+    if (example) obj.example = example
+
+    const btn = document.getElementById('add-save-btn')
+    btn.disabled = true
+    btn.innerHTML = '<span class="spinner"></span>Saving...'
+
+    try {
+      allData[cat].push(obj)
+      allData[cat].sort((a, b) => a.letter.localeCompare(b.letter) || a.term.localeCompare(b.term))
+      await saveCategory(cat)
+      showToast(`"${term}" added to ${cat} ✓`, 'success')
+      resetAddForm()
+    } catch (e) {
+      allData[cat].pop()
+      showToast('Save failed — check token permissions', 'error')
+    }
+
+    btn.disabled = false
+    btn.textContent = 'Save term'
+  }
+
+  // ─── EDIT / DELETE ────────────────────────────────────────────
+  function filterByCategory(cat) {
+    document.getElementById('edit-cat-filter').value = cat
+    renderTermList()
+  }
+
+  function renderTermList() {
+    const catFilter = document.getElementById('edit-cat-filter').value
+    const q = document.getElementById('term-search').value.toLowerCase()
+    const list = document.getElementById('term-list')
+    list.innerHTML = ''
+
+    let items = []
+    const cats = catFilter ? [catFilter] : CATEGORIES
+    for (const cat of cats) {
+      for (const term of (allData[cat] || [])) {
+        if (!q || term.term.toLowerCase().includes(q)) {
+          items.push({ cat, term })
+        }
+      }
+    }
+
+    if (!items.length) {
+      list.innerHTML = '<div class="empty-state">No terms found.</div>'
+      return
+    }
+
+    for (const { cat, term } of items) {
+      const el = document.createElement('div')
+      el.className = 'term-list-item'
+      el.innerHTML = `
+        <span class="term-list-item-name">${term.term}</span>
+        <span class="term-list-item-letter">${cat} · ${term.letter}</span>`
+      el.onclick = () => openEditForm(cat, term.term)
+      list.appendChild(el)
+    }
+  }
+
+  function openEditForm(cat, termName) {
+    const term = allData[cat].find(t => t.term === termName)
+    if (!term) return
+
+    document.getElementById('edit-list-view').style.display = 'none'
+    document.getElementById('edit-form-view').style.display = 'block'
+    document.getElementById('edit-form-title').textContent = `Editing: ${term.term}`
+    document.getElementById('edit-form-sub').textContent = `${cat} category`
+    document.getElementById('edit-cat').value = cat
+    document.getElementById('edit-original-term').value = term.term
+    document.getElementById('edit-term').value = term.term
+    document.getElementById('edit-letter').value = term.letter
+    document.getElementById('edit-note').value = term.note || ''
+    document.getElementById('edit-example').value = term.example || ''
+
+    const defsList = document.getElementById('edit-defs-list')
+    defsList.innerHTML = ''
+    for (const def of (term.definitions || [])) addDefLine('edit-defs-list', def)
+    if (!term.definitions?.length) addDefLine('edit-defs-list')
+
+    const typesList = document.getElementById('edit-types-list')
+    typesList.innerHTML = ''
+    for (const t of (term.types || [])) addTypePair('edit-types-list', t.name, t.description)
+
+    const partsList = document.getElementById('edit-parts-list')
+    partsList.innerHTML = ''
+    for (const p of (term.parts || [])) addTypePair('edit-parts-list', p.name, p.description)
+
+    hideDeleteConfirm()
+  }
+
+  function showListView() {
+    document.getElementById('edit-list-view').style.display = 'block'
+    document.getElementById('edit-form-view').style.display = 'none'
+    renderTermList()
+  }
+
+  async function updateTerm() {
+    const cat = document.getElementById('edit-cat').value
+    const originalTerm = document.getElementById('edit-original-term').value
+    const term = document.getElementById('edit-term').value.trim()
+    const letter = document.getElementById('edit-letter').value
+    const defs = getDefLines('edit-defs-list')
+    const note = document.getElementById('edit-note').value.trim()
+    const types = getTypePairs('edit-types-list')
+    const parts = getTypePairs('edit-parts-list')
+    const example = document.getElementById('edit-example').value.trim()
+
+    if (!term || !letter) { showToast('Term name and letter required', 'error'); return }
+
+    const idx = allData[cat].findIndex(t => t.term === originalTerm)
+    if (idx === -1) { showToast('Term not found', 'error'); return }
+
+    const obj = { term, letter, definitions: defs }
+    if (note) obj.note = note
+    if (types.length) obj.types = types
+    if (parts.length) obj.parts = parts
+    if (example) obj.example = example
+
+    const btn = document.getElementById('edit-save-btn')
+    btn.disabled = true
+    btn.innerHTML = '<span class="spinner"></span>Saving...'
+
+    const backup = { ...allData[cat][idx] }
+    try {
+      allData[cat][idx] = obj
+      allData[cat].sort((a, b) => a.letter.localeCompare(b.letter) || a.term.localeCompare(b.term))
+      await saveCategory(cat)
+      showToast(`"${term}" updated ✓`, 'success')
+      document.getElementById('edit-original-term').value = term
+      document.getElementById('edit-form-title').textContent = `Editing: ${term}`
+    } catch {
+      allData[cat][idx] = backup
+      showToast('Save failed — check token permissions', 'error')
+    }
+
+    btn.disabled = false
+    btn.textContent = 'Save changes'
+  }
+
+  function showDeleteConfirm() {
+    document.getElementById('delete-confirm').classList.add('visible')
+  }
+
+  function hideDeleteConfirm() {
+    document.getElementById('delete-confirm').classList.remove('visible')
+  }
+
+  async function deleteTerm() {
+    const cat = document.getElementById('edit-cat').value
+    const termName = document.getElementById('edit-original-term').value
+    const idx = allData[cat].findIndex(t => t.term === termName)
+    if (idx === -1) return
+
+    const backup = allData[cat][idx]
+    try {
+      allData[cat].splice(idx, 1)
+      await saveCategory(cat)
+      showToast(`"${termName}" deleted`, 'info')
+      showListView()
+    } catch {
+      allData[cat].splice(idx, 0, backup)
+      showToast('Delete failed', 'error')
+      hideDeleteConfirm()
+    }
+  }
+
+  // ─── TOAST ───────────────────────────────────────────────────
+  let toastTimer
+  function showToast(msg, type = 'info') {
+    const t = document.getElementById('toast')
+    t.textContent = msg
+    t.className = type
+    t.style.display = 'block'
+    clearTimeout(toastTimer)
+    toastTimer = setTimeout(() => { t.style.display = 'none' }, 3500)
+  }
+</script>
+</body>
+</html>
