@@ -1,5 +1,30 @@
 [
   {
+    "term": "aa\r>what a mess of a dreamer you made my dear",
+    "letter": "A",
+    "definitions": [
+      "interface = a point where two things meet and interact with each other. so, like \"bridge\" or \"connector\" between two different things that lets them communicate",
+      "api is the interface part of the backend that frontend talks to",
+      "api is written inside backend code; it is a backend(server + logic + database + api + etc etc etc) component",
+      "another way to define it would be, a way for two programs to talk to each other(exchange data/information); the \"two programs\" can be any two separate pieces of software that need to communicate. for example, your extension + your backend, your backend + OpenAI, weather app + weather service, your landing page + your backend. we are calling them two different programs cause, 1)they’ve separate codebases (different files, different locations) and 2) they’re running independently(like extension runs in browser, backend runs on server)"
+    ],
+    "note": "it can be of the following types;",
+    "types": [
+      {
+        "name": "backend api",
+        "description": "you build your own in your server for connecting with client/frontend, like we would in node.js"
+      },
+      {
+        "name": "external api",
+        "description": "someone else's backend, like you call with openai’s ai, or with some weather showing server website, map showing server website"
+      },
+      {
+        "name": "browser api(frontened apis)",
+        "description": "built into browser to connect with servers; like fetch(), localStorage()"
+      }
+    ]
+  },
+  {
     "term": "api",
     "letter": "A",
     "definitions": [
