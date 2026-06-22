@@ -865,7 +865,7 @@
 
   async function loadAllData() {
     for (const cat of CATEGORIES) {
-      const file = await ghGet(`data/${cat}.json`)
+      const file = await ghGet(`public/data/${cat}.json`)
       fileSHAs[cat] = file.sha
       allData[cat] = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\n/g, '')))))
     }
@@ -873,7 +873,7 @@
 
   async function saveCategory(cat) {
     const content = JSON.stringify(allData[cat], null, 2)
-    const result = await ghPut(`data/${cat}.json`, content, fileSHAs[cat], `admin: update ${cat}.json`)
+    const result = await ghPut(`public/data/${cat}.json`, content, fileSHAs[cat], `admin: update ${cat}.json`)
     fileSHAs[cat] = result.content.sha
   }
 
