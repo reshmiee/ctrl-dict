@@ -66,7 +66,7 @@
     ]
   },
   {
-    "term": "Code",
+    "term": "code",
     "letter": "C",
     "definitions": [
       "the instructions you write that create programs",
@@ -98,7 +98,7 @@
     ]
   },
   {
-    "term": "File Structure",
+    "term": "file structure",
     "letter": "F",
     "definitions": [
       "how the code files are organized into folders and subfolders"
@@ -112,23 +112,17 @@
     ]
   },
   {
-    "term": "Framework",
+    "term": "framework",
     "letter": "F",
     "definitions": [
       "complete skeleton/structure for building applications that enforces specific patterns and controls the overall flow of your program",
-      "inversion of control — the framework calls YOUR code, not the other way around",
-      "opinionated — has strong rules about how you should organize and write code",
-      "comprehensive — provides the entire foundation, not just individual tools",
-      "dictates architecture — you work within its structure"
+      "you features, inversion of control(the framework calls YOUR code, not the other way around), opinionated(has strong rules about how you should organize and write code), comprehensive(provides the entire foundation, not just individual tools), dictates architecture(you work within its structure)",
+      "example; 1. node.js: express.js - web server, next.js - full-stack React apps, nestJS - enterprise"
     ],
     "types": [
       {
-        "name": "node.js",
-        "description": "express.js - web server, next.js - full-stack React apps, nestJS - enterprise applications"
-      },
-      {
         "name": "python",
-        "description": "django - full-stack web framework, flask - lightweight web framework, fastAPI - modern API framework"
+        "description": "django - full-stack web framework, flask - lightweight web framework,"
       },
       {
         "name": "frontend",
@@ -199,23 +193,17 @@
     ]
   },
   {
-    "term": "Library",
+    "term": "library",
     "letter": "L",
     "definitions": [
       "collection of pre-written modules that solve common problems; someone else already wrote the code, tested it, and packaged it for you to use",
-      "you're in control — you decide when and how to use it",
-      "passive — it sits there waiting for you to call it",
-      "modular — you can use just the parts you need",
-      "specific purpose — solves a particular category of problems"
+      "in this, you're in control(you decide when and how to use it), passive(it sits there waiting for you to call it), modular(you can use just the parts you need), specific purpose(solves a particular category of problems)",
+      "example; 1. node.js: axios - HTTP requests, mysql2 - database connections, moment - date"
     ],
     "types": [
       {
-        "name": "node.js",
-        "description": "axios - HTTP requests, mysql2 - database connections, moment - date manipulation, bcrypt - password hashing"
-      },
-      {
         "name": "python",
-        "description": "requests - HTTP requests (Python's axios), pandas - data analysis, numpy - numerical computing, matplotlib - plotting/graphs, beautifulsoup - web scraping"
+        "description": "requests - HTTP requests (Python's axios), pandas - data analysis,"
       }
     ]
   },
@@ -227,23 +215,17 @@
     ]
   },
   {
-    "term": "Module",
+    "term": "module",
     "letter": "M",
     "definitions": [
       "single, focused piece of code that does ONE specific thing, think of it as the smallest building block",
-      "single responsibility — does one job only",
-      "self-contained — all the code for that one job is in one place",
-      "reusable — you can use it anywhere in your project",
-      "importable — you bring it into other files when needed"
+      "it has single responsibility(does one job only), self-contained(all the code for that one job is in one place), reusable(you can use it anywhere in your project), importable(you bring it into other files when needed)",
+      "example; 1. node.js: fs - file operations, path - file paths, os - operating system info, crypto -"
     ],
     "types": [
       {
-        "name": "node.js",
-        "description": "fs - file operations, path - file paths, os - operating system info, crypto - encryption"
-      },
-      {
-        "name": "python",
-        "description": "math - mathematical functions, random - random numbers, datetime - date/time handling, json - JSON parsing"
+        "name": "math",
+        "description": "mathematical functions, random - random numbers, datetime - date/time"
       },
       {
         "name": "your own",
@@ -252,13 +234,14 @@
     ]
   },
   {
-    "term": "Package",
+    "term": "package",
     "letter": "P",
     "definitions": [
       "bundle of code (modules/libraries/frameworks) that's been packaged up and published for others to download and use",
-      "code you write → package it up → publish to npm → others can install it"
+      "code you write → package it up → publish to npm → others can install it",
+      "example; installing module, library, framework via:"
     ],
-    "note": "npm (node package manager) is like an app store for JavaScript code. installing via: javascript/node.js: npm, yarn, pnpm — python: pip, conda"
+    "note": "npm (node package manager) is like an app store for JavaScript code"
   },
   {
     "term": "port",
@@ -298,27 +281,12 @@
     ]
   },
   {
-    "term": "Response",
+    "term": "response",
     "letter": "R",
     "definitions": [
       "what the server sends back to the client after processing the request.",
       "communication between client & server"
-    ],
-    "parts": [
-      {
-        "name": "status code",
-        "description": "did it work? (200 = success, 404 = not found, 500 = error)"
-      },
-      {
-        "name": "headers",
-        "description": "extra info"
-      },
-      {
-        "name": "body",
-        "description": "the actual data"
-      }
-    ],
-    "example": "Status: 200 OK\nBody: { \"safe\": true, \"reason\": \"No threats detected\" }"
+    ]
   },
   {
     "term": "Runtime Environment",
@@ -373,55 +341,24 @@
     "note": "software is a general term for all programs, program is a specific piece of software, application(app) is software you use directly. (software is a group of multiple programs. though, a single program can be called software too)"
   },
   {
-    "term": "Tech Stack",
+    "term": "tech stack",
     "letter": "T",
     "definitions": [
       "the combination of technologies/tools you'll use to build the project."
     ]
   },
   {
-    "term": "Tools",
+    "term": "tools",
     "letter": "T",
     "definitions": [
-      "software used during development to write, run, test, and manage code"
-    ],
-    "types": [
-      {
-        "name": "node.js",
-        "description": "javaScript runtime — lets you run JavaScript outside browser"
-      },
-      {
-        "name": "npm",
-        "description": "package manager — installs libraries/tools (comes with node.js)"
-      },
-      {
-        "name": "vs code",
-        "description": "code editor"
-      },
-      {
-        "name": "git",
-        "description": "version control — saves your code history, teamwork"
-      },
-      {
-        "name": "github",
-        "description": "code hosting — store code online, share with team"
-      },
-      {
-        "name": "postman",
-        "description": "api tester — test your backend without building frontend yet"
-      },
-      {
-        "name": "mysql workbench",
-        "description": "database viewer — see your database visually"
-      },
-      {
-        "name": "chrome devtools",
-        "description": "browser debugger — see errors, test code in browser"
-      },
-      {
-        "name": "terminal/command prompt",
-        "description": "command line — run commands to start servers, install things"
-      }
+      "node.js: javaScript runtime(lets you run JavaScript outside browser),",
+      "npm: package manager(installs libraries/tools (comes with node.js)),",
+      "vs code: code editor,",
+      "git: version control(saves your code history, teamwork)",
+      "github: code hosting(store code online, share with team)",
+      "postman: api tester(test your backend without building frontend yet)",
+      "mysql workbench: database viewer(see your database visually)",
+      "chrome devtools: browser debugger(see errors, test code in browser)\r> terminal/command prompt: command line (run commands to start servers, install things"
     ]
   },
   {
