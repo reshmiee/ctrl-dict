@@ -1,31 +1,44 @@
 [
   {
-    "term": "API",
+    "term": "api",
     "letter": "A",
     "definitions": [
-      "interface = a point where two things meet and interact with each other. so, like a 'bridge' or 'connector' between two different things that lets them communicate",
+      "interface = a point where two things meet and interact with each other. so, like \"bridge\" or \"connector\" between two different things that lets them communicate",
       "api is the interface part of the backend that frontend talks to",
-      "api is written inside backend code; it is a backend (server + logic + database + api + etc) component",
-      "another way to define it would be, a way for two programs to talk to each other (exchange data/information); the 'two programs' can be any two separate pieces of software that need to communicate. for example, your extension + your backend, your backend + OpenAI, weather app + weather service, your landing page + your backend. we are calling them two different programs cause, 1) they've separate codebases (different files, different locations) and 2) they're running independently (like extension runs in browser, backend runs on server)"
+      "api is written inside backend code; it is a backend(server + logic + database + api + etc etc etc) component",
+      "another way to define it would be, a way for two programs to talk to each other(exchange data/information); the \"two programs\" can be any two separate pieces of software that need to communicate. for example, your extension + your backend, your backend + OpenAI, weather app + weather service, your landing page + your backend. we are calling them two different programs cause, 1)they’ve separate codebases (different files, different locations) and 2) they’re running independently(like extension runs in browser, backend runs on server)"
     ],
     "note": "it can be of the following types;",
     "types": [
-      { "name": "backend api", "description": "you build your own in your server for connecting with client/frontend, like we would in node.js" },
-      { "name": "external api", "description": "someone else's backend, like you call with openai's ai, or with some weather showing server website, map showing server website" },
-      { "name": "browser api (frontend apis)", "description": "built into browser to connect with servers; like fetch(), localStorage()" }
+      {
+        "name": "backend api",
+        "description": "you build your own in your server for connecting with client/frontend, like we would in node.js"
+      },
+      {
+        "name": "external api",
+        "description": "someone else's backend, like you call with openai’s ai, or with some weather showing server website, map showing server website"
+      },
+      {
+        "name": "browser api(frontened apis)",
+        "description": "built into browser to connect with servers; like fetch(), localStorage()"
+      }
     ]
   },
   {
-    "term": "API Call",
+    "term": "api call",
     "letter": "A",
     "definitions": [
       "asking another service for data"
     ]
   },
   {
-    "term": "Cache",
+    "term": "cache",
     "letter": "C",
-    "definitions": []
+    "definitions": [
+      "the instructions you write that create programs",
+      "basically, the text you write (in a programming language) to give instructions to the computer. when executed, this code becomes a program",
+      "code is static (just text sitting in files) but when you run/execute it, it becomes a program (doing things)"
+    ]
   },
   {
     "term": "Code",
@@ -37,23 +50,23 @@
     ]
   },
   {
-    "term": "Codebase",
+    "term": "codebase",
     "letter": "C",
     "definitions": [
       "the complete collection of all source code files for a project or program",
-      "basically, all the code files that make up your project, stored in one place (all the code files for your project)"
-    ],
-    "note": "codebase are the actual code files themselves (the content) and file structure is how those files are organized - the folder/file arrangement (the organization)"
+      "basically, all the code files that make up your project, stored in one place (all the code files for your project)",
+      "remember- codebase are the actual code files themselves (the content) and file structure is how those files are organized - the folder/file arrangement (the organization)"
+    ]
   },
   {
-    "term": "Deployment",
+    "term": "deployment",
     "letter": "D",
     "definitions": [
       "putting project online for others to use"
     ]
   },
   {
-    "term": "Environment Variables",
+    "term": "environment variables",
     "letter": "E",
     "definitions": [
       "secret config (api keys, passwords)"
@@ -61,6 +74,13 @@
   },
   {
     "term": "File Structure",
+    "letter": "F",
+    "definitions": [
+      "how the code files are organized into folders and subfolders"
+    ]
+  },
+  {
+    "term": "file structure:",
     "letter": "F",
     "definitions": [
       "how the code files are organized into folders and subfolders"
@@ -77,40 +97,76 @@
       "dictates architecture — you work within its structure"
     ],
     "types": [
-      { "name": "node.js", "description": "express.js - web server, next.js - full-stack React apps, nestJS - enterprise applications" },
-      { "name": "python", "description": "django - full-stack web framework, flask - lightweight web framework, fastAPI - modern API framework" },
-      { "name": "frontend", "description": "react - UI framework, vue - UI framework, angular - UI framework" }
+      {
+        "name": "node.js",
+        "description": "express.js - web server, next.js - full-stack React apps, nestJS - enterprise applications"
+      },
+      {
+        "name": "python",
+        "description": "django - full-stack web framework, flask - lightweight web framework, fastAPI - modern API framework"
+      },
+      {
+        "name": "frontend",
+        "description": "react - UI framework, vue - UI framework, angular - UI framework"
+      }
     ]
   },
   {
-    "term": "Fullstack",
+    "term": "fullstack",
     "letter": "F",
     "definitions": [
       "frontend + backend"
     ]
   },
   {
-    "term": "HTTP",
+    "term": "http",
     "letter": "H",
     "definitions": [
       "the rules/language browsers and servers use to talk to each other",
-      "protocol used between client & server"
+      "protocol used between client & server",
+      "there are 9 standard http methods:"
     ],
-    "note": "http method/http verb: the type of action you want to perform on a resource; basically, defines what you want to do with the data. there are 9 standard http methods (GET, POST, PUT, PATCH, DELETE are the five most important ones):",
     "types": [
-      { "name": "get", "description": "retrieve/read data; asking server to send you information" },
-      { "name": "post", "description": "create/send new data; sending data to server to create something new" },
-      { "name": "put", "description": "update/replace entire resource; replacing all data of something with new data" },
-      { "name": "patch", "description": "partially update resource; updating just part of the data" },
-      { "name": "delete", "description": "remove resource; remove/delete data from server" },
-      { "name": "head", "description": "same as get but only retrieves headers (no body); used to check if a resource exists without downloading it" },
-      { "name": "options", "description": "ask server what methods are allowed; checks CORS (cross origin resource sharing)" },
-      { "name": "connect", "description": "establish a tunnel (for proxies); used for very specific networking scenarios" },
-      { "name": "trace", "description": "echo back the request (for debugging); rarely used, mostly for troubleshooting" }
+      {
+        "name": "get",
+        "description": "retrieve/read data; asking server to send you information"
+      },
+      {
+        "name": "post",
+        "description": "create/send new data; sending data to server to create something new"
+      },
+      {
+        "name": "put",
+        "description": "update/Replace entire resource; replacing all data of something with new data"
+      },
+      {
+        "name": "patch",
+        "description": "partially update resource; updating just part of the data"
+      },
+      {
+        "name": "delete",
+        "description": "remove resource; remove/delete data from server"
+      },
+      {
+        "name": "head",
+        "description": "same as get but only retrieves headers (no body); used to check if a resource exists without downloading it"
+      },
+      {
+        "name": "options",
+        "description": "ask server what methods are allowed; checks CORS (cross origin resource sharing)"
+      },
+      {
+        "name": "connect",
+        "description": "establish a tunnel (for proxies); used for very specific networking scenarios"
+      },
+      {
+        "name": "trace",
+        "description": "echo back the request (for debugging); rarely used, mostly for troubleshooting"
+      }
     ]
   },
   {
-    "term": "JSON",
+    "term": "json",
     "letter": "J",
     "definitions": [
       "a format for organizing and sending data (looks like javascript objects)",
@@ -128,12 +184,18 @@
       "specific purpose — solves a particular category of problems"
     ],
     "types": [
-      { "name": "node.js", "description": "axios - HTTP requests, mysql2 - database connections, moment - date manipulation, bcrypt - password hashing" },
-      { "name": "python", "description": "requests - HTTP requests (Python's axios), pandas - data analysis, numpy - numerical computing, matplotlib - plotting/graphs, beautifulsoup - web scraping" }
+      {
+        "name": "node.js",
+        "description": "axios - HTTP requests, mysql2 - database connections, moment - date manipulation, bcrypt - password hashing"
+      },
+      {
+        "name": "python",
+        "description": "requests - HTTP requests (Python's axios), pandas - data analysis, numpy - numerical computing, matplotlib - plotting/graphs, beautifulsoup - web scraping"
+      }
     ]
   },
   {
-    "term": "Localhost",
+    "term": "localhost",
     "letter": "L",
     "definitions": [
       "your own computer as a server"
@@ -150,9 +212,18 @@
       "importable — you bring it into other files when needed"
     ],
     "types": [
-      { "name": "node.js", "description": "fs - file operations, path - file paths, os - operating system info, crypto - encryption" },
-      { "name": "python", "description": "math - mathematical functions, random - random numbers, datetime - date/time handling, json - JSON parsing" },
-      { "name": "your own", "description": "helpers.js / utils.py - your utility functions" }
+      {
+        "name": "node.js",
+        "description": "fs - file operations, path - file paths, os - operating system info, crypto - encryption"
+      },
+      {
+        "name": "python",
+        "description": "math - mathematical functions, random - random numbers, datetime - date/time handling, json - JSON parsing"
+      },
+      {
+        "name": "your own",
+        "description": "helpers.js / utils.py - your utility functions"
+      }
     ]
   },
   {
@@ -165,39 +236,41 @@
     "note": "npm (node package manager) is like an app store for JavaScript code. installing via: javascript/node.js: npm, yarn, pnpm — python: pip, conda"
   },
   {
-    "term": "Port",
+    "term": "port",
     "letter": "P",
     "definitions": [
       "door number server listens on (like 3000, 5000)"
     ]
   },
   {
-    "term": "Program",
+    "term": "program",
     "letter": "P",
     "definitions": [
       "a set of instructions that tell the computer what to do.",
       "running/executing a program: the process of the computer following the instructions given to it step-by-step"
     ],
     "types": [
-      { "name": "applications (apps)", "description": "programs you use directly; example- browser, instagram, browser extension" },
-      { "name": "system software", "description": "programs that run the computer itself; example- windows, macOS, linux" },
-      { "name": "scripts/code", "description": "small programs that do specific tasks; example- javascript file that checks urls, python script that analyzes data, your backend server code" }
+      {
+        "name": "applications (apps)",
+        "description": "programs you use directly; example- browser, instagram, browser extension"
+      },
+      {
+        "name": "system software",
+        "description": "programs that run the computer itself; example- windows, macOS, linux"
+      },
+      {
+        "name": "scripts/code",
+        "description": "small programs that do specific tasks; example- javascript file that checks urls, python script that analyzes data, your backend server code"
+      }
     ]
   },
   {
-    "term": "Request",
+    "term": "request",
     "letter": "R",
     "definitions": [
       "what the client (frontend) sends to the server (backend) asking for something",
       "communication between client & server"
-    ],
-    "parts": [
-      { "name": "method", "description": "get, post, etc." },
-      { "name": "url", "description": "where to send it" },
-      { "name": "headers", "description": "extra info (like 'I'm sending JSON')" },
-      { "name": "body", "description": "data being sent (for POST/PUT)" }
-    ],
-    "example": "POST /check-url\nHeaders: { Content-Type: application/json }\nBody: { \"url\": \"example.com\" }"
+    ]
   },
   {
     "term": "Response",
@@ -207,9 +280,18 @@
       "communication between client & server"
     ],
     "parts": [
-      { "name": "status code", "description": "did it work? (200 = success, 404 = not found, 500 = error)" },
-      { "name": "headers", "description": "extra info" },
-      { "name": "body", "description": "the actual data" }
+      {
+        "name": "status code",
+        "description": "did it work? (200 = success, 404 = not found, 500 = error)"
+      },
+      {
+        "name": "headers",
+        "description": "extra info"
+      },
+      {
+        "name": "body",
+        "description": "the actual data"
+      }
     ],
     "example": "Status: 200 OK\nBody: { \"safe\": true, \"reason\": \"No threats detected\" }"
   },
@@ -220,16 +302,40 @@
       "the complete ecosystem needed to run your code (includes interpreter/compiler + libraries + APIs + memory management + everything else)"
     ],
     "parts": [
-      { "name": "interpreter or compiler", "description": "the translator" },
-      { "name": "built-in libraries/modules", "description": "pre-written code" },
-      { "name": "memory manager", "description": "handles memory allocation" },
-      { "name": "garbage collector", "description": "cleans up unused memory" },
-      { "name": "apis to interact with system", "description": "lets your code talk to the OS" }
+      {
+        "name": "interpreter or compiler",
+        "description": "the translator"
+      },
+      {
+        "name": "built-in libraries/modules",
+        "description": "pre-written code"
+      },
+      {
+        "name": "memory manager",
+        "description": "handles memory allocation"
+      },
+      {
+        "name": "garbage collector",
+        "description": "cleans up unused memory"
+      },
+      {
+        "name": "apis to interact with system",
+        "description": "lets your code talk to the OS"
+      }
     ],
     "types": [
-      { "name": "node.js runtime", "description": "includes V8 interpreter + Node APIs + event loop" },
-      { "name": "python runtime", "description": "includes Python interpreter + standard library" },
-      { "name": "JVM", "description": "Java Virtual Machine - includes Java compiler + runtime libraries" }
+      {
+        "name": "node.js runtime",
+        "description": "includes V8 interpreter + Node APIs + event loop"
+      },
+      {
+        "name": "python runtime",
+        "description": "includes Python interpreter + standard library"
+      },
+      {
+        "name": "JVM",
+        "description": "Java Virtual Machine - includes Java compiler + runtime libraries"
+      }
     ],
     "note": "runtime environment CONTAINS the interpreter/compiler + extras. interpreter = simultaneous translator (listens and translates sentence-by-sentence in real-time). compiler = book translator (reads entire book, translates it all, then publishes). runtime environment = the entire conference setup (room + translator + microphone + seats + everything needed for the event to happen)"
   },
@@ -255,15 +361,42 @@
       "software used during development to write, run, test, and manage code"
     ],
     "types": [
-      { "name": "node.js", "description": "javaScript runtime — lets you run JavaScript outside browser" },
-      { "name": "npm", "description": "package manager — installs libraries/tools (comes with node.js)" },
-      { "name": "vs code", "description": "code editor" },
-      { "name": "git", "description": "version control — saves your code history, teamwork" },
-      { "name": "github", "description": "code hosting — store code online, share with team" },
-      { "name": "postman", "description": "api tester — test your backend without building frontend yet" },
-      { "name": "mysql workbench", "description": "database viewer — see your database visually" },
-      { "name": "chrome devtools", "description": "browser debugger — see errors, test code in browser" },
-      { "name": "terminal/command prompt", "description": "command line — run commands to start servers, install things" }
+      {
+        "name": "node.js",
+        "description": "javaScript runtime — lets you run JavaScript outside browser"
+      },
+      {
+        "name": "npm",
+        "description": "package manager — installs libraries/tools (comes with node.js)"
+      },
+      {
+        "name": "vs code",
+        "description": "code editor"
+      },
+      {
+        "name": "git",
+        "description": "version control — saves your code history, teamwork"
+      },
+      {
+        "name": "github",
+        "description": "code hosting — store code online, share with team"
+      },
+      {
+        "name": "postman",
+        "description": "api tester — test your backend without building frontend yet"
+      },
+      {
+        "name": "mysql workbench",
+        "description": "database viewer — see your database visually"
+      },
+      {
+        "name": "chrome devtools",
+        "description": "browser debugger — see errors, test code in browser"
+      },
+      {
+        "name": "terminal/command prompt",
+        "description": "command line — run commands to start servers, install things"
+      }
     ]
   },
   {
