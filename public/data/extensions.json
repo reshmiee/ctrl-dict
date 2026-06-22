@@ -1,6 +1,6 @@
 [
   {
-    "term": "Background Script",
+    "term": "background Script",
     "letter": "B",
     "definitions": [
       "runs in background"
@@ -14,21 +14,21 @@
     ]
   },
   {
-    "term": "Manifest",
+    "term": "manifest",
     "letter": "M",
     "definitions": [
       "config file for extension"
     ]
   },
   {
-    "term": "Permissions",
+    "term": "permissions",
     "letter": "P",
     "definitions": [
       "what extension can access"
     ]
   },
   {
-    "term": "Popup",
+    "term": "popup",
     "letter": "P",
     "definitions": [
       "window when you click icon"
