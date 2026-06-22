@@ -1,6 +1,6 @@
 [
   {
-    "term": "Async",
+    "term": "async",
     "letter": "A",
     "definitions": [
       "code that doesn't wait, runs in background"
@@ -14,10 +14,26 @@
       "frontend is the code/interface that runs on the client that the user sees and interacts with"
     ],
     "types": [
-      { "name": "examples of clients", "description": "your browser (chrome, firefox), your extension (the program running in browser), a mobile app, even another server can be a client" },
-      { "name": "examples of frontend", "description": "html/css/js files, ui/design, buttons, forms, visuals" }
+      {
+        "name": "examples of clients",
+        "description": "your browser (chrome, firefox), your extension (the program running in browser), a mobile app, even another server can be a client"
+      },
+      {
+        "name": "examples of frontend",
+        "description": "html/css/js files, ui/design, buttons, forms, visuals"
+      }
     ],
     "note": "client = hardware/program (the thing making requests). frontend = the code running on it (what the user sees). server (computer/program) → backend (code on server). client (browser/device) → frontend (code in browser)"
+  },
+  {
+    "term": "client vs frontened",
+    "letter": "C",
+    "definitions": [
+      "client is the device/program that makes requests to a server, basically, the \"thing\" thats asking for services",
+      "example of clients- your browser (chrome, firefox), your extension (the program running in browser), a mobile app, even another server can be a client",
+      "frontend is the code/interface that runs on the client that the user sees and interacts with",
+      "example of frontend- html/css/js files, ui/design, buttons, forms, visuals"
+    ]
   },
   {
     "term": "DOM",
@@ -27,17 +43,24 @@
     ]
   },
   {
-    "term": "Event Listener",
+    "term": "event listener",
     "letter": "E",
     "definitions": [
       "code that waits for clicks/typing"
     ]
   },
   {
-    "term": "Fetch",
+    "term": "fetch",
     "letter": "F",
     "definitions": [
       "getting data from internet"
+    ]
+  },
+  {
+    "term": "hardware/program",
+    "letter": "H",
+    "definitions": [
+      "document object model (the webpage structure)"
     ]
   }
 ]
