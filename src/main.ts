@@ -39,7 +39,7 @@ function renderBackBtn() {
 }
 
 async function loadCategory(id: string): Promise<Term[]> {
-  const res = await fetch(`/data/${id}.json`)
+  const res = await fetch(`${import.meta.env.BASE_URL}data/${id}.json`)
   return res.json()
 }
 
