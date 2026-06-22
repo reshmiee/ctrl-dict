@@ -11,23 +11,46 @@
     ]
   },
   {
-    "term": "Backend",
+    "term": "api endpoint:",
+    "letter": "A",
+    "definitions": [
+      "it is written as: method + url(the address) [http method + url path]",
+      "a specific (method + url) on your server that does one particular thing, that the frontend calls/visits to send or get data",
+      "a \"door\" on your server that receives data or sends data",
+      "for example, you'll have different api endpoints for different purposes like, one for /check-url, one for /submit-feedback, one for /get-stats etc",
+      "frontend/client calls the backend/server, that has api… now this api branches into different endpoints; a particular api endpoint is then selected that will help to complete that particular task"
+    ]
+  },
+  {
+    "term": "backend",
     "letter": "B",
     "definitions": [
       "everything that runs on the server (behind the scenes)",
-      "Backend = API + Authentication/Authorization + Background Jobs + Business Logic + Caching + Configuration + Database + Error Handling + External API Integration + File Storage (optional) + Logging + Middleware + Security + Server Logic"
+      "Backend = API + Authentication/Authorization + Background Jobs + Business Logic + Caching + Configuration  + Database + Error Handling + External API Integration + File Storage (optional) + Logging + Middleware +  Security + Server Logic"
+    ]
+  },
+  {
+    "term": "data - storing, fetching, updating, deleting data in databases",
+    "letter": "D",
+    "definitions": [
+      "putting your project on the internet so others can access it",
+      "renting space on someone else's server to run your code which makes our website/backend available 24/7",
+      "basically, before hosting our project was only working on our computer but after hosting, anyone worldwide can use it"
     ],
     "types": [
-      { "name": "data", "description": "storing, fetching, updating, deleting data in databases" },
-      { "name": "authentication & authorization", "description": "login systems, checking permissions, who can access what" },
-      { "name": "business logic", "description": "all the rules and calculations (pricing, discounts, algorithms, validation)" },
-      { "name": "processing/computing", "description": "heavy tasks like image resizing, video compression, complex calculations" },
-      { "name": "external services", "description": "connecting to payment processors, email services, SMS, other APIs" },
-      { "name": "real-time communication", "description": "routing messages between users, live updates, notifications" },
-      { "name": "security", "description": "encryption, spam detection, rate limiting, protecting sensitive operations" },
-      { "name": "background jobs", "description": "scheduled tasks, automated processes, cleanup operations" }
-    ],
-    "note": "some basic terms you should know: server (the program that listens), api endpoints (the doors clients can call), routes (the logic for each endpoint), business logic (the 'brain' - what to do), database connection (how to talk to MySQL), middleware (security checks, logging), external api integration (calling OpenAI, etc.), authentication (who can access what), error handling (what if something breaks)"
+      {
+        "name": "backend hosting",
+        "description": "for our node.js server (Render, Railway)"
+      },
+      {
+        "name": "database hosting",
+        "description": "for our mysql (PlanetScale, Railway)"
+      },
+      {
+        "name": "frontend hosting",
+        "description": "for our landing page (Vercel, Netlify)"
+      }
+    ]
   },
   {
     "term": "Hosting",
@@ -38,35 +61,43 @@
       "basically, before hosting our project was only working on our computer but after hosting, anyone worldwide can use it"
     ],
     "types": [
-      { "name": "backend hosting", "description": "for our node.js server (Render, Railway)" },
-      { "name": "database hosting", "description": "for our mysql (PlanetScale, Railway)" },
-      { "name": "frontend hosting", "description": "for our landing page (Vercel, Netlify)" }
+      {
+        "name": "backend hosting",
+        "description": "for our node.js server (Render, Railway)"
+      },
+      {
+        "name": "database hosting",
+        "description": "for our mysql (PlanetScale, Railway)"
+      },
+      {
+        "name": "frontend hosting",
+        "description": "for our landing page (Vercel, Netlify)"
+      }
     ]
   },
   {
-    "term": "Middleware",
+    "term": "middleware",
     "letter": "M",
     "definitions": [
       "code that runs b/w the request and response",
       "it is HUGE for cybersecurity",
-      "it checks requests from the frontend for security issues like invalid data, unauthorized access, and spam attacks. only safe requests are forwarded to the backend, blocking malicious ones before they can cause harm."
+      "it checks requests from the frontend for security issues like invalid data, unauthorized access, and spam attacks. Only safe requests are forwarded to the backend, blocking malicious ones before they can cause harm."
     ]
   },
   {
-    "term": "Protocol",
+    "term": "protocol",
     "letter": "P",
     "definitions": [
       "a set of rules that define how something should be done"
     ]
   },
   {
-    "term": "Route",
+    "term": "route",
     "letter": "R",
     "definitions": [
       "route = endpoint + the code that handles it",
       "when frontend calls an api endpoint, the backend code/function corresponding to that particular api endpoint is called route"
-    ],
-    "note": "ek button [endpoint] dabaya aur button dabane ke piche logic ye likha hai ki- 'bulb jalega' toh ye jo logic likha hua hai ki button dabane pe kya hoga is route"
+    ]
   },
   {
     "term": "Server vs Backend",
@@ -76,24 +107,46 @@
       "backend is the code/logic that runs on the server that processes requests and manages data"
     ],
     "types": [
-      { "name": "examples of server", "description": "a physical computer in a data center (AWS, google cloud server), your laptop running node.js (during development), render/railway hosting service (cloud server), apache/nginx (web server software)" },
-      { "name": "examples of backend", "description": "your node.js + express code files, api endpoints (/check-url, /submit-feedback), routes and handler functions, database connection code, business logic (the 'brain'), middleware (security checks, logging), authentication code" }
+      {
+        "name": "examples of server",
+        "description": "a physical computer in a data center (AWS, google cloud server), your laptop running node.js (during development), render/railway hosting service (cloud server), apache/nginx (web server software)"
+      },
+      {
+        "name": "examples of backend",
+        "description": "your node.js + express code files, api endpoints (/check-url, /submit-feedback), routes and handler functions, database connection code, business logic (the 'brain'), middleware (security checks, logging), authentication code"
+      }
     ]
   },
   {
-    "term": "Software",
+    "term": "server vs backened",
     "letter": "S",
     "definitions": [
-      "programs and instructions that tell a computer what to do. the non-physical part of a computer.",
+      "server is the computer/program that listens for and responds to requests, basically, the \"thing\" that's always running and waiting to serve.",
+      "example of server- a physical computer in a data center (AWS, google cloud server), your laptop running node.js (during development), render/railway hosting service (cloud server), apache/nginx (web server software)",
+      "backend is the code/logic that runs on the server that processes requests and manages data",
+      "example of backend- your node.js + express code files, api endpoints (/check-url, /submit-feedback), routes and handler functions, database connection code, business logic (the \"brain\"), middleware (security checks, logging), authentication code"
+    ]
+  },
+  {
+    "term": "software",
+    "letter": "S",
+    "definitions": [
+      "programs and instructions that tell a computer what to do. The non-physical part of a computer.",
       "remember: software is a general term for all programs, program is a specific piece of software, application(app) is software you use directly. (software is a group of multiple programs. though, a single program can be called software too)"
     ]
   },
   {
-    "term": "URL",
+    "term": "some basic terms you should know:",
+    "letter": "S",
+    "definitions": [
+      "everything backend does;"
+    ]
+  },
+  {
+    "term": "url",
     "letter": "U",
     "definitions": [
       "the address/location of something on the internet"
-    ],
-    "note": "path of a url: the part of the URL that comes AFTER the domain name, specifying which specific resource/page you want. example: url path = /check-url"
+    ]
   }
 ]
