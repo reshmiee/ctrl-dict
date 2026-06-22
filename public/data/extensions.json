@@ -17,7 +17,11 @@
     "term": "manifest",
     "letter": "M",
     "definitions": [
-      "config file for extension"
+      "config file for extension",
+      "runs on webpages",
+      "runs in background",
+      "window when you click icon",
+      "what extension can access"
     ]
   },
   {
