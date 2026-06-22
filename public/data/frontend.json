@@ -36,7 +36,7 @@
     ]
   },
   {
-    "term": "DOM",
+    "term": "dom",
     "letter": "D",
     "definitions": [
       "document object model (the webpage structure)"
