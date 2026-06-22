@@ -26,7 +26,8 @@
     "letter": "B",
     "definitions": [
       "everything that runs on the server (behind the scenes)",
-      "Backend = API + Authentication/Authorization + Background Jobs + Business Logic + Caching + Configuration  + Database + Error Handling + External API Integration + File Storage (optional) + Logging + Middleware +  Security + Server Logic"
+      "Backend = API + Authentication/Authorization + Background Jobs + Business Logic + Caching + Configuration  + Database + Error Handling + External API Integration + File Storage (optional) + Logging + Middleware +  Security + Server Logic",
+      "everything backend does;"
     ]
   },
   {
@@ -53,7 +54,7 @@
     ]
   },
   {
-    "term": "Hosting",
+    "term": "hosting",
     "letter": "H",
     "definitions": [
       "putting your project on the internet so others can access it",
